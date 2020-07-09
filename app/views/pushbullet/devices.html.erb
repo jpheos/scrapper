@@ -1,0 +1,7 @@
+<h1>Appareils</h1>
+
+<%= form_with(url: pushbullet_devices_pick_path, local: true) do |f| %>
+  <%= f.collection_radio_buttons :iden, @devices.map {|d| [d[:iden], d[:nickname]]}, :first, :last %>
+  <br>
+  <%= f.submit %>
+<% end %>
