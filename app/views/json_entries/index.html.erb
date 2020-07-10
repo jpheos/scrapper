@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Json Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Data</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @json_entries.each do |json_entry| %>
+      <tr>
+        <td><%= json_entry.area_id %></td>
+        <td><%= json_entry.data %></td>
+        <td><%= json_entry.name %></td>
+        <td><%= link_to 'Show', json_entry %></td>
+        <td><%= link_to 'Edit', edit_json_entry_path(json_entry) %></td>
+        <td><%= link_to 'Destroy', json_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Json Entry', new_json_entry_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @json_entry.area_id %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @json_entry.data %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @json_entry.name %>
+</p>
+
+<%= link_to 'Edit', edit_json_entry_path(@json_entry) %> |
+<%= link_to 'Back', json_entries_path %>

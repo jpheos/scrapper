@@ -1,0 +1,27 @@
+<%= form_with(model: json_entry, url: [@area, json_entry], local: true) do |form| %>
+  <% if json_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(json_entry.errors.count, "error") %> prohibited this json_entry from being saved:</h2>
+
+      <ul>
+        <% json_entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.text_field :data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
