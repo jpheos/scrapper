@@ -33,5 +33,9 @@ module Scrapper
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.generators.helper false
+    config.generators.stylesheets false
+    config.generators.javascripts false
+    config.generators.view_specs false
   end
 end
