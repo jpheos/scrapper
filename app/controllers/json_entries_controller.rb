@@ -60,6 +60,6 @@ class JsonEntriesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def json_entry_params
-    params.require(:json_entry).permit(:area_id, :data, :name)
+    params.require(:json_entry).permit(:area_id, :data, :name, :verb, :post_body)
   end
 end

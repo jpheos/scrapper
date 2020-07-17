@@ -12,14 +12,25 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
     <%= form.label :data %>
     <%= form.text_area :data %>
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :POST? %>
+    <%= form.check_box :verb %>
   </div>
+
+  <div class="field">
+    <%= form.label :post_body %>
+    <%= form.text_area :post_body %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
