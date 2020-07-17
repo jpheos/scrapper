@@ -3,4 +3,4 @@
 <%= render 'form', json_entry: @json_entry %>
 
 <%= link_to 'Show', @json_entry %> |
-<%= link_to 'Back', json_entries_path %>
+<%= link_to "Area #{@json_entry.area}", area_json_entries_path(@json_entry.area) %>

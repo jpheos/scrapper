@@ -25,7 +25,7 @@ class JsonEntriesController < ApplicationController
     @json_entry = @area.json_entries.new(json_entry_params)
 
     if @json_entry.save
-      redirect_to @json_entry, notice: 'Json entry was successfully created.'
+      redirect_to edit_json_entry_path(@json_entry), notice: 'Json entry was successfully created.'
     else
       render :new
     end

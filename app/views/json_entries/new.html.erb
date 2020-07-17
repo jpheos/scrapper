@@ -2,4 +2,4 @@
 
 <%= render 'form', json_entry: @json_entry %>
 
-<%= link_to 'Back', area_json_entries_path(@area) %>
+<%= link_to "Area #{@area.name}", area_path(@area) %>
