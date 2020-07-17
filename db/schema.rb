@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_115631) do
+ActiveRecord::Schema.define(version: 2020_07_17_140132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 2020_07_17_115631) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_areas_on_user_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "json_entry_id", null: false
+    t.string "title"
+    t.string "url"
+    t.string "image"
+    t.string "price"
+    t.string "area"
+    t.string "type"
+    t.string "zipcode"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["json_entry_id"], name: "index_items_on_json_entry_id"
   end
 
   create_table "json_entries", force: :cascade do |t|
@@ -56,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_115631) do
   end
 
   add_foreign_key "areas", "users"
+  add_foreign_key "items", "json_entries"
   add_foreign_key "json_entries", "areas"
   add_foreign_key "pushbullet_settings", "users"
 end
