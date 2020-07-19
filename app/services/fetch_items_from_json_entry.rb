@@ -1,4 +1,4 @@
-require_relative "../../lib/scrapper/engine.rb"
+require "scrapper/engine"
 
 class FetchItemsFromJsonEntry
   def initialize(json_entry)
@@ -23,7 +23,6 @@ class FetchItemsFromJsonEntry
         ad2.zipcode = ad["zipcode"] if ad["zipcode"]
         ad2.city = ad["city"] if ad["city"]
         ad2.json_entry = @json_entry
-        ad2.save!
       end
     end
   end
