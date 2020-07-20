@@ -5,13 +5,14 @@ class Scrapper::Selector
   attr_accessor :children
 
   def initialize(json, domain)
-    @id              = json['id']
-    @type            = json['type']
-    @parent_selector = json['parentSelectors'].first
-    @selector_css    = json['selector']
-    @delay = json['delay']
-    @multiple = json['multiple']
-    @domain = domain
+    @id                = json['id']
+    @type              = json['type']
+    @parent_selector   = json['parentSelectors'].first
+    @selector_css      = json['selector']
+    @extract_attribute = json['extractAttribute']
+    @delay             = json['delay']
+    @multiple          = json['multiple']
+    @domain            = domain
   end
 
   def data(element)
@@ -27,10 +28,11 @@ class Scrapper::Selector
 
   def data_simple
     @match = @matches.first
-
     case @type
-    when 'SelectorText' then @match.text
+    when 'SelectorText' then @match.text.strip
     when 'SelectorLink' then selector_link_value
+    when 'SelectorElementAttribute' then selector_element_attribute
+    when 'SelectorImage' then selector_image
     else
       "error #{@type}"
     end
@@ -48,5 +50,13 @@ class Scrapper::Selector
 
     doc = Nokogiri::HTML(URI.open(url))
     @children.map { |c| [c.id, c.data(doc)] }.to_h
+  end
+
+  def selector_element_attribute
+    @match[@extract_attribute]
+  end
+
+  def selector_image
+    @match[:src].start_with?('/') ? "#{@domain}#{@match[:src]}" : @match[:src]
   end
 end
