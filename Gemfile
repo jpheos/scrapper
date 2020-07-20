@@ -46,6 +46,6 @@ end
 gem 'dotenv-rails', groups: %i[development test]
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'awesome_print', '~> 1.8'
+gem 'amazing_print', '~> 1.2.1'
 
 gem 'httparty', '~> 0.18.1'
