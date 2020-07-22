@@ -9,7 +9,10 @@ class AreasController < ApplicationController
   end
 
   # GET /areas/1
-  def show; end
+  def show
+    @json_entries = @area.json_entries
+    @items = @area.items
+  end
 
   # GET /areas/new
   def new
@@ -24,7 +27,7 @@ class AreasController < ApplicationController
     @area = current_user.areas.new(area_params)
 
     if @area.save
-      redirect_to @area, notice: 'Area was successfully created.'
+      redirect_to @area, notice: "Area was successfully created."
     else
       render :new
     end
@@ -33,7 +36,7 @@ class AreasController < ApplicationController
   # PATCH/PUT /areas/1
   def update
     if @area.update(area_params)
-      redirect_to @area, notice: 'Area was successfully updated.'
+      redirect_to @area, notice: "Area was successfully updated."
     else
       render :edit
     end
@@ -42,7 +45,7 @@ class AreasController < ApplicationController
   # DELETE /areas/1
   def destroy
     @area.destroy
-    redirect_to areas_url, notice: 'Area was successfully destroyed.'
+    redirect_to areas_url, notice: "Area was successfully destroyed."
   end
 
   private

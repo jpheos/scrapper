@@ -1,7 +1,22 @@
-<p>
-  <strong>Name:</strong>
+<h1 class="font-bold text-5xl mb-2">
   <%= @area.name %>
-</p>
+</h1>
+
+<h3 class="font-bold text-xl mb-2">Json_entry :</h3>
+
+<ul>
+  <% @json_entries.each do |json_entry| %>
+    <li class="my-4"><%= json_entry.name %> <%= link_to "Voir", json_entry_path(json_entry), class:"bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %> </li>
+  <% end %>
+</ul>
+
+<h2 class="font-bold text-2xl my-2">Annonces :</h2>
+
+<div class="flex flex-wrap mx-2">
+  <% @items.each do |item| %>
+    <%= render partial: "item", locals: { item: item } %>
+  <% end %>
+</div>
 
 <%= link_to 'Add Json Entry', new_area_json_entry_path(@area) %> |
 <%= link_to 'Edit', edit_area_path(@area) %> |
