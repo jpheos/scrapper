@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Area:</strong>
-  <%= @json_entry.area_id %>
-</p>
-
-<p>
-  <strong>Data:</strong>
-  <%= @json_entry.data %>
-</p>
-
-<p>
-  <strong>Name:</strong>
+<h1 class="font-bold text-5xl mb-2">
   <%= @json_entry.name %>
-</p>
+</h1>
+
+<h2 class="font-bold text-2xl my-2">Annonces :</h2>
+
+<div class="flex flex-wrap mx-2">
+  <% @items.each do |item| %>
+    <%= render partial: "shared/item", locals: { item: item } %>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_json_entry_path(@json_entry) %> |
-<%= link_to 'Back', area_json_entries_path(@json_entry.area) %>
+<%= link_to 'Back', area_path(@json_entry.area) %>

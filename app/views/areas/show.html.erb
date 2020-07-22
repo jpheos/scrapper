@@ -14,7 +14,7 @@
 
 <div class="flex flex-wrap mx-2">
   <% @items.each do |item| %>
-    <%= render partial: "item", locals: { item: item } %>
+    <%= render partial: "/shared/item", locals: { item: item } %>
   <% end %>
 </div>
 
