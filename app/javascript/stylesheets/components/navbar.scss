@@ -1,0 +1,23 @@
+.active {
+  background-color: white;
+  display: inline-block;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding: 0.5rem 1rem;
+  color: #2b6cb0;
+  font-weight: 600;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  margin-bottom: -1px;
+}
+
+.navbutton {
+  background-color: white;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: #4299e1;
+  font-weight: 600;
+}
+
+// bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold
