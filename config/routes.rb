@@ -15,5 +15,7 @@ Rails.application.routes.draw do
 
   resources :json_entries, only: %i[edit update destroy show]
 
+  resources :items, only: %i[index]
+
   root to: "areas#index"
 end

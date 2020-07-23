@@ -1,0 +1,10 @@
+<h1 class="font-bold text-5xl mb-2">
+  Mes annonces
+</h1>
+
+<div class="flex flex-wrap mx-2">
+  <% @items.each do |item| %>
+    <%= render partial: "shared/item", locals: { item: item } %>
+  <% end %>
+</div>
+
