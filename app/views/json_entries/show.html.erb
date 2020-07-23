@@ -2,6 +2,8 @@
   <%= @json_entry.name %>
 </h1>
 
+<%= link_to 'Mettre à jour', json_entry_refresh_path(@json_entry), method: :post, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+
 <h2 class="font-bold text-2xl my-2">Annonces :</h2>
 
 <div class="flex flex-wrap mx-2">

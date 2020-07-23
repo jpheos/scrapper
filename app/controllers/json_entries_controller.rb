@@ -2,7 +2,7 @@
 
 class JsonEntriesController < ApplicationController
   before_action :set_area, only: %i[index new create]
-  before_action :set_json_entry, only: %i[show edit update destroy]
+  before_action :set_json_entry, only: %i[show edit update destroy refresh]
 
   # GET /json_entries
   def index
@@ -45,6 +45,11 @@ class JsonEntriesController < ApplicationController
   def destroy
     @json_entry.destroy
     redirect_to json_entries_url, notice: "Json entry was successfully destroyed."
+  end
+
+  def refresh
+    FetchItemsFromJsonEntry.new(@json_entry).call
+    redirect_to json_entry_path(@json_entry)
   end
 
   private
