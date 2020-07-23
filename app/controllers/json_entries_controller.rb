@@ -6,7 +6,6 @@ class JsonEntriesController < ApplicationController
 
   # GET /json_entries
   def index
-    @json_entries = @area.json_entries
   end
 
   # GET /json_entries/1
