@@ -64,6 +64,24 @@
       "multiple": false,
       "extractAttribute": "data-lazy-src",
       "delay": 0
+    },
+    {
+      "id": "city",
+      "type": "SelectorText",
+      "parentSelectors": ["card"],
+      "selector": "div.city",
+      "multiple": false,
+      "regex": "",
+      "delay": 0
+    },
+    {
+      "id": "zipcode",
+      "type": "SelectorText",
+      "parentSelectors": ["card"],
+      "selector": "div.cp",
+      "multiple": false,
+      "regex": "",
+      "delay": 0
     }
   ]
 }

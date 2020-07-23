@@ -28,3 +28,9 @@ json_entries.each do |attr|
   json_entry = JsonEntry.create!(attr)
   ap json_entry
 end
+
+ap "Creation Items"
+
+JsonEntry.all.each do |jsonentry|
+  FetchItemsFromJsonEntry.new(jsonentry).call
+end
