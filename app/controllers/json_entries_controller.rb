@@ -10,7 +10,7 @@ class JsonEntriesController < ApplicationController
 
   # GET /json_entries/1
   def show
-    @items = @json_entry.items
+    @items = @json_entry.items.order("id DESC")
   end
 
   # GET /json_entries/new
