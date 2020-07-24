@@ -5,7 +5,7 @@ require 'scrapper/engine'
 class FetchItemsFromJsonEntry
   def initialize(json_entry)
     @json_entry = json_entry
-    @json = JSON.parse(@json_entry.data)
+    @json       = JSON.parse(@json_entry.data)
   end
 
   def call
@@ -17,7 +17,7 @@ class FetchItemsFromJsonEntry
   private
 
   def call_scrapper_engine
-    @ads = Scrapper::Engine.new(json: @json).call
+    @ads = Scrapper::Engine.new(json: @json, post_body: @json_entry.post_body).call
   end
 
   def reorganize_json_keys
