@@ -13,6 +13,7 @@ user = User.create!(email: email, password: "azerty")
 
 ap user
 
+
 ap "Creation Area"
 area = Area.create!(user: user, name: "Test Lyon")
 ap area
@@ -29,6 +30,13 @@ json_entries = [
     area: area,
     data: open("data/json_files/selection_immo.json").read,
   },
+  {
+    name: "Rhone soane Immo",
+    area: area,
+    data: open("data/json_files/rhone_soane_immo.json").read,
+    verb: true,
+    post_body: open("data/json_files/rhone_soane_immo_request.txt").read,
+  }
 ]
 json_entries.each do |attr|
   json_entry = JsonEntry.create!(attr)

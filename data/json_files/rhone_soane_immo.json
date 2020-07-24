@@ -1,0 +1,66 @@
+{
+  "_id": "rhonesoaneimmo",
+  "startUrl": ["https://www.rhone-saone-immo.com/nos-offres/"],
+  "selectors": [
+    {
+      "id": "card",
+      "type": "SelectorElement",
+      "parentSelectors": ["_root"],
+      "selector": "div.postlist__item",
+      "multiple": true,
+      "delay": 0
+    },
+    {
+      "id": "title",
+      "type": "SelectorText",
+      "parentSelectors": ["card"],
+      "selector": ".entityItemContentTitle a",
+      "multiple": false,
+      "regex": "",
+      "delay": 0
+    },
+    {
+      "id": "price",
+      "type": "SelectorText",
+      "parentSelectors": ["card"],
+      "selector": "span.postlist__price",
+      "multiple": false,
+      "regex": "",
+      "delay": 0
+    },
+    {
+      "id": "area",
+      "type": "SelectorText",
+      "parentSelectors": ["card"],
+      "selector": "strong:nth-of-type(3)",
+      "multiple": false,
+      "regex": "",
+      "delay": 0
+    },
+    {
+      "id": "url",
+      "type": "SelectorLink",
+      "parentSelectors": ["card"],
+      "selector": ".entityItemContentTitle a",
+      "multiple": false,
+      "delay": 0
+    },
+    {
+      "id": "city",
+      "type": "SelectorText",
+      "parentSelectors": ["card"],
+      "selector": "p.entityItemContentDate",
+      "multiple": false,
+      "regex": "",
+      "delay": 0
+    },
+    {
+      "id": "image",
+      "type": "SelectorImage",
+      "parentSelectors": ["card"],
+      "selector": "img",
+      "multiple": false,
+      "delay": 0
+    }
+  ]
+}
