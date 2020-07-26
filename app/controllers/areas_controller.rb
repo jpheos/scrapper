@@ -5,7 +5,7 @@ class AreasController < ApplicationController
 
   # GET /areas
   def index
-    @areas = Area.all
+    @areas = current_user.areas
   end
 
   # GET /areas/1
