@@ -5,6 +5,7 @@ require 'pushbullet'
 
 class PushbulletController < ApplicationController
   before_action :check_pushbullet_setting, only: %i[devices devices_pick]
+  skip_before_action :check_pushbullet
 
   def init
     client = OAuth2::Client.new(ENV['PUSHBULLET_CLIENT_ID'], ENV['PUSHBULLET_CLIENT_SECRET'], authorize_url: 'https://www.pushbullet.com/authorize')
