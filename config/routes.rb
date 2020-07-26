@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "pushbullet/callback"
-  get "pushbullet/init"
-  get "pushbullet/devices"
-  post "pushbullet/devices/pick", to: "pushbullet#devices_pick"
-  post "/json_entries/:id/refresh", to: "json_entries#refresh", as: "json_entry_refresh"
+  get 'pushbullet/callback'
+  get 'pushbullet/init'
+  get 'pushbullet/devices'
+  post 'pushbullet/devices/pick', to: 'pushbullet#devices_pick'
+  post '/json_entries/:id/refresh', to: 'json_entries#refresh', as: 'json_entry_refresh'
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :areas do
@@ -18,5 +18,5 @@ Rails.application.routes.draw do
 
   resources :items, only: %i[index]
 
-  root to: "areas#index"
+  root to: 'areas#index'
 end

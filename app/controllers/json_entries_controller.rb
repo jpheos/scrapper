@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
 class JsonEntriesController < ApplicationController
-  before_action :set_area, only: %i[index new create]
+  before_action :set_area, only: %i[new create]
   before_action :set_json_entry, only: %i[show edit update destroy refresh]
-
-  # GET /json_entries
-  def index
-  end
 
   # GET /json_entries/1
   def show
-    @items = @json_entry.items.order("id DESC")
+    @items = @json_entry.items.order(id: :desc)
   end
 
   # GET /json_entries/new
@@ -26,7 +22,7 @@ class JsonEntriesController < ApplicationController
     @json_entry = @area.json_entries.new(json_entry_params)
 
     if @json_entry.save
-      redirect_to edit_json_entry_path(@json_entry), notice: "Json entry was successfully created."
+      redirect_to edit_json_entry_path(@json_entry), notice: 'Json entry was successfully created.'
     else
       render :new
     end
@@ -35,7 +31,7 @@ class JsonEntriesController < ApplicationController
   # PATCH/PUT /json_entries/1
   def update
     if @json_entry.update(json_entry_params)
-      redirect_to @json_entry, notice: "Json entry was successfully updated."
+      redirect_to @json_entry, notice: 'Json entry was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +40,7 @@ class JsonEntriesController < ApplicationController
   # DELETE /json_entries/1
   def destroy
     @json_entry.destroy
-    redirect_to json_entries_url, notice: "Json entry was successfully destroyed."
+    redirect_to json_entries_url, notice: 'Json entry was successfully destroyed.'
   end
 
   def refresh

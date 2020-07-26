@@ -11,7 +11,7 @@ class AreasController < ApplicationController
   # GET /areas/1
   def show
     @json_entries = @area.json_entries
-    @items = @area.items.order("id DESC")
+    @items = @area.items.order(id: :desc)
   end
 
   # GET /areas/new

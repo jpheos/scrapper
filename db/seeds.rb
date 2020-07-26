@@ -4,7 +4,13 @@ Area.destroy_all
 User.destroy_all
 
 ap "Creation User"
-user = User.create!(email: "inicolas69@gmail.com", password: "azerty")
+
+email = ENV['EMAIL_SEED']
+
+raise 'you need to have a `EMAIL_SEED` env variable' if email.blank?
+
+user = User.create!(email: email, password: "azerty")
+
 ap user
 
 ap "Creation Area"
