@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_pushbullet
-    redirect_to pushbullet_init_path if current_user.pushbullet_setting.nil?
     redirect_to pushbullet_init_path if current_user && current_user.pushbullet_setting.nil?
   end
 end
