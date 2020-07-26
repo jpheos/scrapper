@@ -2,7 +2,10 @@
 
 require 'scrapper/engine'
 
+# return an array of items creating from scrapping
 class FetchItemsFromJsonEntry < ApplicationService
+  ITEM_ATTRIBUTES = %w[title area price image url nature zipcode city].freeze
+
   def initialize(json_entry)
     @json_entry = json_entry
     @json       = JSON.parse(@json_entry.data)
@@ -11,6 +14,7 @@ class FetchItemsFromJsonEntry < ApplicationService
   def call
     call_scrapper_engine
     reorganize_json_keys
+    filter_existing_items
     create_items
   end
 
@@ -27,19 +31,19 @@ class FetchItemsFromJsonEntry < ApplicationService
     end
   end
 
+  def filter_existing_items
+    urls           = @ads.map { |ad| ad['url'] }
+    existing_urls  = Item.where(url: urls).pluck(:url)
+    urls_to_create = urls - existing_urls
+
+    @ads.select! { |ad| ad['url'].in? urls_to_create }
+  end
+
   def create_items
-    @ads.each do |ad|
-      Item.find_or_create_by(url: ad['url']) do |ad2|
-        ad2.title      = ad['title'] if ad['title']
-        ad2.area       = ad['area'] if ad['area']
-        ad2.price      = ad['price'] if ad['price']
-        ad2.image      = ad['image'] if ad['image']
-        ad2.url        = ad['url'] if ad['url']
-        ad2.nature     = ad['type'] if ad['type']
-        ad2.zipcode    = ad['zipcode'] if ad['zipcode']
-        ad2.city       = ad['city'] if ad['city']
-        ad2.json_entry = @json_entry
-      end
+    @ads.map do |ad|
+      data = ad.slice(*ITEM_ATTRIBUTES)
+      data[:json_entry] = @json_entry
+      Item.create!(data)
     end
   end
 end
