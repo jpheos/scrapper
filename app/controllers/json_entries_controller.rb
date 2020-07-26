@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
 class JsonEntriesController < ApplicationController
-  before_action :set_area, only: %i[index new create]
-  before_action :set_json_entry, only: %i[show edit update destroy]
-
-  # GET /json_entries
-  def index
-    @json_entries = @area.json_entries
-  end
+  before_action :set_area, only: %i[new create]
+  before_action :set_json_entry, only: %i[show edit update destroy refresh]
 
   # GET /json_entries/1
-  def show; end
+  def show
+    @items = @json_entry.items.order(id: :desc)
+  end
 
   # GET /json_entries/new
   def new
@@ -44,6 +41,11 @@ class JsonEntriesController < ApplicationController
   def destroy
     @json_entry.destroy
     redirect_to json_entries_url, notice: 'Json entry was successfully destroyed.'
+  end
+
+  def refresh
+    FetchItemsFromJsonEntry.new(@json_entry).call
+    redirect_to json_entry_path(@json_entry)
   end
 
   private

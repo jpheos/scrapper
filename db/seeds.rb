@@ -1,26 +1,42 @@
 Item.destroy_all
 JsonEntry.destroy_all
+Area.destroy_all
+User.destroy_all
 
+ap "Creation User"
 
-if User.first
-  user = User.first
-else
-  user = User.create!(email: "jooo.blanchard@gmail.com", password: "azerty")
-end
+email = ENV['EMAIL_SEED']
+
+raise 'you need to have a `EMAIL_SEED` env variable' if email.blank?
+
+user = User.create!(email: email, password: "azerty")
+
+ap user
+
+ap "Creation Area"
 area = Area.create!(user: user, name: "Test Lyon")
+ap area
+
+ap "Creation JsonEntry"
 json_entries = [
   {
     name: "Espaces atypiques",
     area: area,
-    data: open("data/json_files/espaces_atypiques.json").read
+    data: open("data/json_files/espaces_atypiques.json").read,
   },
   {
     name: "Selection Immo",
     area: area,
-    data: open("data/json_files/selection_immo.json").read
-  }
+    data: open("data/json_files/selection_immo.json").read,
+  },
 ]
 json_entries.each do |attr|
-  JsonEntry.create!(attr)
+  json_entry = JsonEntry.create!(attr)
+  ap json_entry
 end
 
+ap "Creation Items"
+
+JsonEntry.all.each do |jsonentry|
+  FetchItemsFromJsonEntry.new(jsonentry).call
+end

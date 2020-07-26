@@ -9,12 +9,26 @@ class FetchItemsFromJsonEntry
   end
 
   def call
-    ads = Scrapper::Engine.new(json: @json).call
-    item_creator(ads)
+    call_scrapper_engine
+    reorganize_json_keys
+    create_items
   end
 
-  def item_creator(ads)
-    ads.each do |ad|
+  private
+
+  def call_scrapper_engine
+    @ads = Scrapper::Engine.new(json: @json).call
+  end
+
+  def reorganize_json_keys
+    @ads.map do |ad|
+      other = ad.delete('other')
+      ad.merge!(other) if other
+    end
+  end
+
+  def create_items
+    @ads.each do |ad|
       Item.find_or_create_by(url: ad['url']) do |ad2|
         ad2.title      = ad['title'] if ad['title']
         ad2.area       = ad['area'] if ad['area']

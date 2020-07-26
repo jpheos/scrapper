@@ -1,0 +1,15 @@
+<ul class="flex border-b mt-2">
+  <li class="mr-1">
+    <%= link_to "Mes annonces", items_path, class:current_class?(items_path) %>
+  </li>
+  <li class="mr-1">
+    <%= link_to "Mes areas", root_path, class:current_class?(root_path) %>
+  </li>
+  <% if @areas_navbar %>
+    <% @areas_navbar.each do |area| %>
+      <li class="mr-1">
+        <%= link_to area.name, area_path(area), class:current_class?(area_path(area)) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

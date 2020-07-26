@@ -12,10 +12,10 @@
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.name %></td>
-        <td><%= link_to 'Show', area %></td>
-        <td><%= link_to 'Edit', edit_area_path(area) %></td>
-        <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Ajouter un json', new_area_json_entry_path(area) %></td>
+        <td><%= link_to 'Show', area, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %></td>
+        <td><%= link_to 'Edit', edit_area_path(area), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %></td>
+        <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' }, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %></td>
+        <td><%= link_to 'Ajouter un json', new_area_json_entry_path(area), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %></td>
       </tr>
     <% end %>
   </tbody>
