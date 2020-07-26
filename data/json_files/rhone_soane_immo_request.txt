@@ -1,0 +1,1 @@
+type_bien=maison&auto_search_ville=&prix_min=300000&prix_max=600000&surface=&surface_max=&date_publi=&nb_chambres=&orderby=&order=
