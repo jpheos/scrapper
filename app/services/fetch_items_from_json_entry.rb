@@ -2,7 +2,7 @@
 
 require 'scrapper/engine'
 
-class FetchItemsFromJsonEntry
+class FetchItemsFromJsonEntry < ApplicationService
   def initialize(json_entry)
     @json_entry = json_entry
     @json       = JSON.parse(@json_entry.data)
