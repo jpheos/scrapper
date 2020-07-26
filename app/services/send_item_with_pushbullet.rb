@@ -26,8 +26,8 @@ class SendItemWithPushbullet < ApplicationService
       body: body,
       file_name: 'photo.jpg',
       file_type: 'image/jpeg',
-      file_url: 'https://www.rhone-saone-immo.com/wp-content/uploads/2020/07/rsi-1164118-1591727860-0-214x285.jpg',
-      url: 'https://www.rhone-saone-immo.com/offres/vente-maison-210-m%c2%b2-a-le-montellier-325-000-e/'
+      file_url: @item.image,
+      url: @item.url
     }
   end
 
