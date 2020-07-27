@@ -1,4 +1,8 @@
 .item-card {
   height: 27rem;
   width: 18rem;
+
+  img {
+    max-height: 40%;
+  }
 }
