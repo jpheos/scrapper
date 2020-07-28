@@ -5,10 +5,10 @@ class UpdateUserItemsJob < ApplicationJob
 
   def perform(user_id)
     @user = User.find(user_id)
-    @items = FetchItemsFromUser.call(user)
+    @items = FetchItemsFromUser.call(@user)
 
-    if user.pushbullet_setting.nil?
-      Rails.logger.debug "On ne peut pas notifier #{user.email}, car pas de compte pushbullet de connecté."
+    if @user.pushbullet_setting.nil?
+      Rails.logger.debug "On ne peut pas notifier #{@user.email}, car pas de compte pushbullet de connecté."
     else
       notify_user
     end
@@ -24,7 +24,7 @@ class UpdateUserItemsJob < ApplicationJob
 
   def notify_user
     if items.empty?
-      send_pushbullet_job_success(user)
+      send_pushbullet_job_success(@user)
     else
       items.each do |item|
         NotificationItemJob.perform_later(item.id)
