@@ -12,6 +12,7 @@ class FetchItemsFromJsonEntry < ApplicationService
   end
 
   def call
+    debug
     call_scrapper_engine
     reorganize_json_keys
     filter_existing_items
@@ -19,6 +20,10 @@ class FetchItemsFromJsonEntry < ApplicationService
   end
 
   private
+
+  def debug
+    Rails.logger.debug "fetch item from [#{@json_entry.name}][#{@json_entry.id}]"
+  end
 
   def call_scrapper_engine
     @ads = Scrapper::Engine.new(json: @json, post_body: @json_entry.post_body).call
