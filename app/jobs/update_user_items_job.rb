@@ -24,7 +24,7 @@ class UpdateUserItemsJob < ApplicationJob
 
   def notify_user
     if @items.empty?
-      send_pushbullet_job_success(@user)
+      send_pushbullet_job_success
     else
       @items.each do |item|
         NotificationItemJob.perform_later(item.id)
