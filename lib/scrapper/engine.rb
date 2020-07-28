@@ -24,7 +24,7 @@ class Scrapper::Engine
 
   def call
     uri = URI(@start_url)
-    res = @post_body ? Net::HTTP.post(uri, @post_body) : Net::HTTP.get_response(uri)
+    res = @post_body.blank? ? Net::HTTP.get_response(uri) : Net::HTTP.post(uri, @post_body)
     doc = Nokogiri::HTML(res.body)
     first_selector = @selectors.find { |s| s.parent_selector == '_root' }
     # debug_selector(first_selector)
